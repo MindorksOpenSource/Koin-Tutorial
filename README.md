@@ -7,6 +7,7 @@ This repository contains a sample app that implements Koin in MVVM architecture 
   <img src="https://github.com/MindorksOpenSource/Koin-Tutorial/blob/master/assets/banner-koin.png">
 </p>
 
+### Concept reference resources - [Koin Tutorial - Step by Step Guide](https://blog.mindorks.com/kotlin-koin-tutorial)
 
 #### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
