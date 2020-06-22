@@ -7,7 +7,7 @@ import com.mindorks.framework.mvvm.utils.NetworkHelper
 import com.mindorks.framework.mvvm.utils.Resource
 import kotlinx.coroutines.launch
 
-class MainViewModel constructor(
+class MainViewModel(
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
