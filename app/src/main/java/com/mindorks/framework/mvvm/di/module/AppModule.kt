@@ -19,8 +19,8 @@ val appModule = module(override = true) {
     single { provideApiService(get()) }
     single { provideApiHelper(get()) }
     single { provideNetworkHelper(androidContext()) }
-    factory<ApiHelper> {
-        return@factory ApiHelperImpl(get())
+    single<ApiHelper> {
+        return@single ApiHelperImpl(get())
     }
 }
 
