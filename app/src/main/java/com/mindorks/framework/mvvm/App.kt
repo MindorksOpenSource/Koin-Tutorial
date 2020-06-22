@@ -1,7 +1,21 @@
 package com.mindorks.framework.mvvm
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.mindorks.framework.mvvm.di.module.appModule
+import com.mindorks.framework.mvvm.di.module.repoModule
+import com.mindorks.framework.mvvm.di.module.viewModelModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
-@HiltAndroidApp
-class App : Application()
+class App : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@App)
+            androidLogger(Level.DEBUG)
+            modules(listOf(appModule, repoModule, viewModelModule))
+        }
+    }
+}

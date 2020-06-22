@@ -13,13 +13,12 @@ import com.mindorks.framework.mvvm.data.model.User
 import com.mindorks.framework.mvvm.ui.main.adapter.MainAdapter
 import com.mindorks.framework.mvvm.ui.main.viewmodel.MainViewModel
 import com.mindorks.framework.mvvm.utils.Status
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel : MainViewModel by viewModels()
+    private val mainViewModel : MainViewModel by viewModel()
     private lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
