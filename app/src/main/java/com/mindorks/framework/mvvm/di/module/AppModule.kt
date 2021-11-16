@@ -6,6 +6,7 @@ import com.mindorks.framework.mvvm.data.api.ApiHelper
 import com.mindorks.framework.mvvm.data.api.ApiHelperImpl
 import com.mindorks.framework.mvvm.data.api.ApiService
 import com.mindorks.framework.mvvm.utils.NetworkHelper
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val appModule = module {
-    single { provideOkHttpClient() }
+    single { provideOkHttpClient(androidContext()) }
     single { provideRetrofit(get(), BuildConfig.BASE_URL) }
     single { provideApiService(get()) }
     single { provideNetworkHelper(androidContext()) }
@@ -26,11 +27,12 @@ val appModule = module {
 
 private fun provideNetworkHelper(context: Context) = NetworkHelper(context)
 
-private fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+private fun provideOkHttpClient(context: Context) = if (BuildConfig.DEBUG) {
     val loggingInterceptor = HttpLoggingInterceptor()
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
     OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
+        .addInterceptor(ChuckInterceptor(context))
         .build()
 } else OkHttpClient
     .Builder()
